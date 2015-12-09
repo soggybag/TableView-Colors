@@ -8,11 +8,43 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var array = [Int]()
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return array.count
+    }
+    
+    
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
+        
+        cell.textLabel?.text = "\(array[indexPath.row])"
+        
+        // Color cells by changing hue
+        let hue = 1 / CGFloat(array.count) * CGFloat(indexPath.row)
+        cell.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        
+        // Or, set the brightness. Here the min value is 0.55 and max value is 1.0 (0.45 + 0.55)
+        // let b = 0.45 / CGFloat(array.count) * CGFloat(indexPath.row) + 0.55
+        // cell.backgroundColor = UIColor(hue: 0.5, saturation: 1.0, brightness: b, alpha: 1.0)
+        
+        return cell
+    }
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        for i in 1...40 {
+            array.append(i)
+        }
     }
 
     override func didReceiveMemoryWarning() {
