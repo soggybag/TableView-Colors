@@ -25,13 +25,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.textLabel?.text = "\(array[indexPath.row])"
         
+        // You can uncomment the blocks below to text different ways of coloring tableview cells. 
+        
+        /*
         // Color cells by changing hue
         let hue = 1 / CGFloat(array.count) * CGFloat(indexPath.row)
         cell.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        */
         
+        /*
         // Or, set the brightness. Here the min value is 0.55 and max value is 1.0 (0.45 + 0.55)
-        // let b = 0.45 / CGFloat(array.count) * CGFloat(indexPath.row) + 0.55
-        // cell.backgroundColor = UIColor(hue: 0.5, saturation: 1.0, brightness: b, alpha: 1.0)
+        let b = 0.45 / CGFloat(array.count) * CGFloat(indexPath.row) + 0.55
+        cell.backgroundColor = UIColor(hue: 0.5, saturation: 1.0, brightness: b, alpha: 1.0)
+        */
+        
+        
+        // You could use this to color every other cell 
+        // Use % 2 to find each odd numbered cell
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor(hue: 0.43, saturation: 1.0, brightness: 0.75, alpha: 1.0)
+        } else {
+            cell.backgroundColor = UIColor(hue: 0.43, saturation: 1.0, brightness: 0.85, alpha: 1.0)
+        }
         
         return cell
     }
